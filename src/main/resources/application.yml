@@ -1,0 +1,141 @@
+server:
+  port: 8080
+
+camunda:
+  admin-user-id: camunda
+  admin-group-id: camunda-admin
+  bpm:
+    authorization:
+      enabled: true
+    generic-properties:
+      properties:
+        userResourceWhitelistPattern: '[a-zA-Z0-9-_@\.]+|camunda-admin'
+        history-cleanup-enabled: true
+        history-cleanup-strategy: removalTimeBased
+        history-removal-time-strategy: end
+        history-time-to-live: P10D
+        history-cleanup-batch-window-start-time: 03:00
+        history-cleanup-batch-window-end-time: 04:00
+        history-cleanup-degree-of-parallelism: 1
+        history-cleanup-batch-size: 200
+    job-execution:
+      enabled: false
+    history:
+      level: AUDIT
+    history-level: FULL
+    history-publisher:
+      kafka:
+        enabled: true
+        topics:
+          history-process-instance-topic:
+            name: bpm-history-process
+            num-partitions: 1
+            replication-factor: 1
+            retention-policy-in-days: 7
+          history-task-topic:
+            name: bpm-history-task
+            num-partitions: 1
+            replication-factor: 1
+            retention-policy-in-days: 7
+
+data-platform:
+  kafka:
+    producer:
+      enabled: true
+    topic-properties:
+      creation:
+        enabled: true
+        num-partitions: 1
+        replication-factor: 1
+    topics:
+      history-process-instance-topic: bpm-history-process
+      history-task-topic: bpm-history-task
+
+spring.autoconfigure.exclude: com.epam.digital.data.platform.starter.security.PlatformSecurityAutoConfiguration,com.epam.digital.data.platform.starter.security.PermitAllSecurityAutoConfiguration
+
+spring:
+  sleuth:
+    enabled: false
+  application:
+    name: business-process-administration-portal
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            provider: keycloak
+            client-id: ${keycloakClientId}
+            client-secret: ${admin-realm.client-secret}
+            authorization-grant-type: authorization_code
+            scope: openid, profile, email
+        provider:
+          keycloak:
+            issuer-uri: ${keycloakAdminUrl}
+            authorization-uri: ${keycloakAdminUrl}/protocol/openid-connect/auth
+            user-info-uri: ${keycloakAdminUrl}/protocol/openid-connect/userinfo
+            token-uri: ${keycloakAdminUrl}/protocol/openid-connect/token
+            jwk-set-uri: ${keycloakAdminUrl}/protocol/openid-connect/certs
+            user-name-attribute: preferred_username
+            logout-url: ${keycloakAdminUrl}/protocol/openid-connect/logout
+  cloud:
+    discovery:
+      client:
+        health-indicator:
+          enabled: false
+
+# Camunda Keycloak Identity Provider Plugin
+plugin.identity.keycloak:
+  keycloak-issuer-url: ${keycloakAdminUrl}
+  keycloak-admin-url: ${keycloakcCamundaPluginAdminUrl}
+  client-secret: ${admin-realm.client-secret}
+  client-id: ${keycloakClientId}
+  use-email-as-camunda-user-id: true
+  use-username-as-camunda-user-id: false
+  use-group-path-as-camunda-group-id: true
+  administrator-user-name: ${camunda.admin-user-id}
+  administrator-group-name: ${camunda.admin-group-id}
+  disable-s-s-l-certificate-validation: true
+
+# Configuration => prometheus.yml:
+#   scrape_configs:
+#     metrics_path: '/actuator/prometheus'
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'health'
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+      group:
+        liveness:
+          include: livenessState
+        readiness:
+          include: readinessState, db
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+    kafka:
+      enabled: false
+    kubernetes:
+      enabled: false
+
+platform:
+  logging:
+    aspect:
+      enabled: false
+    primary-url:
+      enabled: true
+
+logbook:
+  info-logging:
+    enabled: true
+  strategy: without-body
+  exclude:
+    - /actuator/**
+  obfuscate:
+    headers:
+      - x-access-token

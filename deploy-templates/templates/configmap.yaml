@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}
+data:
+  application.yml: |-
+    spring.datasource.driver-class-name: org.postgresql.Driver
+    spring.datasource.url: jdbc:postgresql://citus-master:5432/camunda
+    keycloakClientId: {{ .Values.keycloak.client }}
+    keycloakAdminUrl: {{ template "keycloak.url" . }}/auth/realms/{{ template "keycloak.adminRealm" . }}
+    keycloakcCamundaPluginAdminUrl: {{ template "keycloak.url" . }}/auth/admin/realms/{{ template "keycloak.adminRealm" . }}
+
+    spring.autoconfigure.exclude: com.epam.digital.data.platform.starter.security.PlatformSecurityAutoConfiguration,com.epam.digital.data.platform.starter.security.PermitAllSecurityAutoConfiguration
+
+    {{- if eq .Values.deployProfile "dev" }}
+    management.endpoints.web.exposure.include: '*'
+    {{- end }}
+
+    data-platform.kafka.bootstrap: {{ .Values.kafka.service }}
+    data-platform.kafka.ssl.enabled: {{ .Values.kafka.sslEnabled }}
+    data-platform.kafka.ssl.keystore-type: {{ .Values.kafka.sslCertType }}
+    data-platform.kafka.ssl.truststore-type: {{ .Values.kafka.sslCertType }}
+    data-platform.kafka.ssl.keystore-certificate: {{ .Values.kafka.sslUserCertificate }}
+    data-platform.kafka.ssl.keystore-key: {{ .Values.kafka.sslUserKey }}
+    data-platform.kafka.ssl.truststore-certificate: {{ .Values.kafka.sslClusterCertificate }}
