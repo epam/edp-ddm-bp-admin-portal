@@ -47,7 +47,9 @@ spec:
           - name: {{ .Chart.Name }}
             mountPath: {{ .Values.appConfigMountPath }}
           - name: bpms-db-credentials
-            mountPath: {{ .Values.appSecretsMountPath }}
+            mountPath: {{ .Values.appSecretsMountPathBpmsDB }}
+          - name: {{ .Values.camunda.admin.secret }}
+            mountPath: {{ .Values.appSecretsMountPathCamundaAdmin }}
       serviceAccountName: {{ .Chart.Name }}
       {{- if .Values.nodeSelector }}
       nodeSelector: {{ toYaml .Values.nodeSelector | nindent 8 }}
@@ -67,4 +69,11 @@ spec:
                 path: spring.datasource.username
               - key: password
                 path: spring.datasource.password
-
+        - name: {{ .Values.camunda.admin.secret }}
+          secret:
+            secretName: {{ .Values.camunda.admin.secret }}
+            items:
+              - key: username
+                path: camunda.bpm.admin-user.id
+              - key: password
+                path: camunda.bpm.admin-user.password

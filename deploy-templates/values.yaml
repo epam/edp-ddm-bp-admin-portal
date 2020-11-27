@@ -7,7 +7,14 @@ service:
   port: 8080
 replicas: 1
 appConfigMountPath: "/app/config"
-appSecretsMountPath: "/app/secrets"
+appSecretsMountPathBpmsDB: "/app/secrets/bpms-db"
+appSecretsMountPathCamundaAdmin: "/app/secrets/camunda-admin"
 
 ingress: # expose the service with a route or an ingress depending on platform type
   platform: openshift # openshift or kubernetes
+
+camunda:
+  admin:
+    secret: camunda-admin-secret
+    username: camunda
+    password: camunda

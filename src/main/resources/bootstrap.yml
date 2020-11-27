@@ -1,12 +1,4 @@
 spring:
-  profiles: dev
-  cloud:
-    kubernetes:
-      config:
-        enabled: false
-
----
-spring:
   application:
     name: business-process-administration-portal
   cloud:
@@ -21,3 +13,11 @@ spring:
         enable-api: false
         paths:
           - /app/secrets
+
+---
+spring:
+  profiles: local
+  cloud:
+    kubernetes:
+      config:
+        enabled: false
