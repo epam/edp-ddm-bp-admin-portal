@@ -7,6 +7,7 @@ service:
   port: 8080
 replicas: 1
 appConfigMountPath: "/app/config"
+appSecretsMountPath: "/app/secrets"
 
 ingress: # expose the service with a route or an ingress depending on platform type
   platform: openshift # openshift or kubernetes
