@@ -46,6 +46,8 @@ spec:
         volumeMounts:
           - name: {{ .Chart.Name }}
             mountPath: {{ .Values.appConfigMountPath }}
+          - name: bpms-db-credentials
+            mountPath: {{ .Values.appSecretsMountPath }}
       serviceAccountName: {{ .Chart.Name }}
       {{- if .Values.nodeSelector }}
       nodeSelector: {{ toYaml .Values.nodeSelector | nindent 8 }}
@@ -57,4 +59,12 @@ spec:
         - name: {{ .Chart.Name }}
           configMap:
             name: {{ .Chart.Name }}
+        - name: bpms-db-credentials
+          secret:
+            secretName: bpms-db-credentials
+            items:
+              - key: username
+                path: spring.datasource.username
+              - key: password
+                path: spring.datasource.password
 
