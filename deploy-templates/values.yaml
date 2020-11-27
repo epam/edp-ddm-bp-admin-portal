@@ -1,16 +1,12 @@
-name: business-process-administration-portal
-namespace: ""
-cdPipelineName: ""
-cdPipelineStageName: ""
-dnsWildcard: apps.cicd.mdtu-ddm.projects.epam.com
-
-database:
-  required: false
-
-
-ingress:
-  required: false
-
 image:
   name: business-process-administration-portal
   version: latest
+port: 8080
+service:
+  type: ClusterIP
+  port: 8080
+replicas: 1
+appConfigMountPath: "/app/config"
+
+ingress: # expose the service with a route or an ingress depending on platform type
+  platform: openshift # openshift or kubernetes
