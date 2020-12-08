@@ -13,6 +13,8 @@ spring:
         enable-api: false
         paths:
           - /app/secrets
+logging:
+  config: classpath:log4j2-json-console.xml # stdout log streaming for fluentd
 
 ---
 spring:
@@ -21,3 +23,5 @@ spring:
     kubernetes:
       config:
         enabled: false
+logging:
+  config: '' # falling back to Spring Boot default logging system configuration
