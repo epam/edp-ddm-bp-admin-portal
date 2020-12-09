@@ -4,13 +4,6 @@ server:
 spring:
   application:
     name: business-process-administration-portal
-    sleuth:
-      opentracing:
-        enabled: true
-      baggage:
-        correlation-enabled: true
-        correlation-fields: x-request-id
-        remote-fields: x-request-id
 
 # Configuration => prometheus.yml:
 #   scrape_configs:
