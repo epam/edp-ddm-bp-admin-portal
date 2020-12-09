@@ -10,7 +10,7 @@
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
-  <groupId>mdtu.ddm.lowcode</groupId>
+  <groupId>ua.gov.mdtu.ddm.lowcode</groupId>
   <artifactId>business-process-administration-portal</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
