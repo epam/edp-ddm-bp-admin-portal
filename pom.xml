@@ -24,8 +24,6 @@
     <sonar.coverage.exclusions>
       **/AdminApplication.java
     </sonar.coverage.exclusions>
-
-    <log4j-layout-template-json.version>2.14.0</log4j-layout-template-json.version>
   </properties>
 
   <dependencyManagement>
@@ -92,18 +90,9 @@
     </dependency>
 
     <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.dataformat</groupId>
-      <artifactId>jackson-dataformat-yaml</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-layout-template-json</artifactId>
-      <version>${log4j-layout-template-json.version}</version>
+      <groupId>ua.gov.mdtu.ddm.general</groupId>
+      <artifactId>platform-logger-spring-boot-starter</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
     </dependency>
 
     <!--Camunda dependencies-->
