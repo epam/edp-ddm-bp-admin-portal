@@ -1,10 +1,10 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: {{ .Chart.Name }}-{{ .Values.namespace }}
+  name: bus-proc-adm-portal-{{ .Values.namespace }}
   namespace: {{ .Values.monitoring.namespace }}
   labels:
-    app: {{ .Chart.Name }}-{{ .Values.namespace }}
+    app: bus-proc-adm-portal-{{ .Values.namespace }}
 spec:
   endpoints:
     - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
