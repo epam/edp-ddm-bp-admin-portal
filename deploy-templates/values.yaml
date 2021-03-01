@@ -1,11 +1,15 @@
 image:
   name: business-process-administration-portal
   version: latest
+
 port: 8080
+
 service:
   type: ClusterIP
   port: 8080
+
 replicas: 1
+
 appConfigMountPath: "/app/config"
 appSecretsMountPathBpmsDB: "/app/secrets/bpms-db"
 appSecretsMountPathCamundaAdmin: "/app/secrets/camunda-admin"
