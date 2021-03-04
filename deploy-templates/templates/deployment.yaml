@@ -46,7 +46,7 @@ spec:
         volumeMounts:
           - name: {{ .Chart.Name }}
             mountPath: {{ .Values.appConfigMountPath }}
-          - name: bpms-db-credentials
+          - name: citus-secrets
             mountPath: {{ .Values.appSecretsMountPathBpmsDB }}
           - name: {{ .Values.camunda.admin.secret }}
             mountPath: {{ .Values.appSecretsMountPathCamundaAdmin }}
@@ -61,9 +61,9 @@ spec:
         - name: {{ .Chart.Name }}
           configMap:
             name: {{ .Chart.Name }}
-        - name: bpms-db-credentials
+        - name: citus-secrets
           secret:
-            secretName: bpms-db-credentials
+            secretName: citus-secrets
             items:
               - key: username
                 path: spring.datasource.username
