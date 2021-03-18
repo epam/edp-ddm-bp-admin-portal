@@ -1,72 +1,32 @@
 # business-process-administration-portal
 
-##### Install platform-logger-spring-boot-starter library
-##### For local development set active profile 'local'
-##### Logger provide stdout in JSON format following predefined layout:
+##### Business process administration portal service utilizes capabilities of Camunda API:
 
-```javascript
-{
-  "@timestamp": {
-    "$resolver": "timestamp",
-    "pattern": {
-      "format": "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
-      "timeZone": "UTC"
-    }
-  },
-  "X-B3-TraceId": {
-    "$resolver": "mdc",
-    "key": "X-B3-TraceId",
-    "stringified": true
-  },
-  "X-B3-SpanId": {
-    "$resolver": "mdc",
-    "key": "X-B3-SpanId",
-    "stringified": true
-  },
-  "X-Request-Id": {
-    "$resolver": "mdc",
-    "key": "x-request-id",
-    "stringified": true
-  },
-  "thread": {
-    "$resolver": "thread",
-    "field": "name"
-  },
-  "level": {
-    "$resolver": "level",
-    "field": "name"
-  },
-  "class": {
-    "$resolver": "source",
-    "field": "className"
-  },
-  "line_number": {
-    "$resolver": "source",
-    "field": "lineNumber"
-  },
-  "method": {
-    "$resolver": "source",
-    "field": "methodName"
-  },
-  "message": {
-    "$resolver": "message",
-    "stringified": true
-  },
-  "exception": {
-    "type": {
-      "$resolver": "exception",
-      "field": "className"
-    },
-    "message": {
-      "$resolver": "exception",
-      "field": "message",
-      "stringified": true
-    },
-    "stacktrace": {
-      "$resolver": "exception",
-      "field": "stackTrace",
-      "stringified": true
-    }
-  }
-}
-```
+* `It is admin application for BMPS. The application brings the following functionality:`
+    * [Camunda Cockpit](https://docs.camunda.org/manual/latest/webapps/cockpit/) for monitoring and operations; 
+    * [Camunda Admin](https://docs.camunda.org/manual/latest/webapps/admin/) for user management;
+    * [Camunda Tasklist](https://docs.camunda.org/manual/latest/webapps/tasklist/) for human task management;
+
+##### Running the tests:
+
+* Tests could be run via maven command:
+    * `mvn verify` OR using appropriate functions of your IDE.
+
+##### Local development:
+
+* run spring boot application using 'local' profile:
+  * `mvn spring-boot:run -Drun.profiles=local` OR using appropriate functions of your IDE.
+* by default (*can be configured in the application-local.yml file*), the application will be available on:  http://localhost:8080
+  * username: `camunda`
+  * password: `camunda`
+* logging settings (*level,pattern,output file*) for local development specified in the `application-local.yml` file;
+  
+##### Logging:
+
+* `Default:`
+  * For classes with annotation RestController/Service, logging is enabled by default for all public methods of a class;
+* `To set up logging:`
+  * *@Logging* - can annotate a class or method to enable logging;
+  * *@Confidential* - can annotate method or method parameters to exclude confidential data from logs:
+    - For a method - exclude the result of execution;
+    - For method parameters - exclude method parameters;
