@@ -27,7 +27,7 @@ spec:
             name: ui
         livenessProbe:
           httpGet:
-            path: /actuator
+            path: {{ .Values.livenessPath }}
             port: {{ .Values.port }}
           failureThreshold: 10
           initialDelaySeconds: 15
@@ -36,7 +36,7 @@ spec:
           timeoutSeconds: 5
         readinessProbe:
           httpGet:
-            path: /actuator
+            path: {{ .Values.readinessPath }}
             port: {{ .Values.port }}
           failureThreshold: 10
           initialDelaySeconds: 15
