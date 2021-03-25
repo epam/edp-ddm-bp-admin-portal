@@ -12,7 +12,7 @@
 
   <groupId>ua.gov.mdtu.ddm.lowcode</groupId>
   <artifactId>business-process-administration-portal</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
 
   <name>business-process-administration-portal</name>
   <description>Admin application for BMPS</description>
@@ -92,7 +92,7 @@
     <dependency>
       <groupId>ua.gov.mdtu.ddm.general</groupId>
       <artifactId>platform-logger-spring-boot-starter</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
     </dependency>
 
     <!--Camunda dependencies-->
