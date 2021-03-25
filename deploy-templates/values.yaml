@@ -1,26 +1,16 @@
+name: bp-admin-portal
+namespace: ""
+cdPipelineName: ""
+cdPipelineStageName: ""
+dnsWildcard: apps.cicd.mdtu-ddm.projects.epam.com
+
+database:
+  required: false
+
+
+ingress:
+  required: false
+
 image:
-  name: business-process-administration-portal
+  name: bp-admin-portal
   version: latest
-port: 8080
-service:
-  type: ClusterIP
-  port: 8080
-replicas: 1
-appConfigMountPath: "/app/config"
-appSecretsMountPathBpmsDB: "/app/secrets/bpms-db"
-appSecretsMountPathCamundaAdmin: "/app/secrets/camunda-admin"
-prometheusScrapePath: "/actuator/prometheus"
-readinessPath: "/actuator/health/readiness"
-livenessPath: "/actuator/health/liveness"
-
-ingress: # expose the service with a route or an ingress depending on platform type
-  platform: openshift # openshift or kubernetes
-
-camunda:
-  admin:
-    secret: camunda-admin-secret
-    username: camunda
-    password: camunda
-
-monitoring:
-  namespace: openshift-monitoring
