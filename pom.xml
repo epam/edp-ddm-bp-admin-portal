@@ -4,10 +4,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.3.9.RELEASE</version>
-    <relativePath/> <!-- lookup parent from repository -->
+    <groupId>ua.gov.mdtu.ddm.lowcode</groupId>
+    <artifactId>low-code-platform-parent</artifactId>
+    <version>1.1.0-SNAPSHOT</version>
+    <relativePath/>
   </parent>
 
   <groupId>ua.gov.mdtu.ddm.lowcode</groupId>
@@ -18,32 +18,10 @@
   <description>Admin application for BMPS</description>
 
   <properties>
-    <java.version>11</java.version>
-    <camunda.version>7.13.0</camunda.version>
-
     <sonar.coverage.exclusions>
       **/AdminApplication.java
     </sonar.coverage.exclusions>
   </properties>
-
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.camunda.bpm</groupId>
-        <artifactId>camunda-bom</artifactId>
-        <version>${camunda.version}</version>
-        <scope>import</scope>
-        <type>pom</type>
-      </dependency>
-      <dependency>
-        <artifactId>spring-cloud-dependencies</artifactId>
-        <groupId>org.springframework.cloud</groupId>
-        <scope>import</scope>
-        <type>pom</type>
-        <version>Hoxton.SR9</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
 
   <dependencies>
     <!--Spring Boot dependencies-->
