@@ -50,6 +50,10 @@ spec:
             mountPath: {{ .Values.appSecretsMountPathBpmsDB }}
           - name: {{ .Values.camunda.admin.secret }}
             mountPath: {{ .Values.appSecretsMountPathCamundaAdmin }}
+          - name: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.adminRealm.name }}-secret
+            mountPath: {{ .Values.appSecretsMountPathAdminKeycloakClient }}
+          - name: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.officerRealm.name }}-secret
+            mountPath: {{ .Values.appSecretsMountPathOfficerKeycloakClient }}
       serviceAccountName: {{ .Chart.Name }}
       {{- if .Values.nodeSelector }}
       nodeSelector: {{ toYaml .Values.nodeSelector | nindent 8 }}
@@ -77,3 +81,15 @@ spec:
                 path: camunda.bpm.admin-user.id
               - key: password
                 path: camunda.bpm.admin-user.password
+        - name: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.adminRealm.name }}-secret
+          secret:
+            secretName: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.adminRealm.name }}-secret
+            items:
+              - key: clientSecret
+                path: admin-realm.client-secret
+        - name: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.officerRealm.name }}-secret
+          secret:
+            secretName: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.officerRealm.name }}-secret
+            items:
+              - key: clientSecret
+                path: officer-realm.client-secret             

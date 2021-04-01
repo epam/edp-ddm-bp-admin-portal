@@ -6,3 +6,6 @@ data:
   application.yml: |-
     spring.datasource.driver-class-name: org.postgresql.Driver
     spring.datasource.url: jdbc:postgresql://citus-master:5432/camunda
+    clientId: {{ .Values.keycloak.client }}
+    keycloakAdminUrl: {{ template "keycloak.url" . }}/auth/realms/{{ template "keycloak.adminRealm" . }}
+    keycloakOfficerUrl: {{ template "keycloak.url" . }}/auth/realms/{{ template "keycloak.officerRealm" . }}
