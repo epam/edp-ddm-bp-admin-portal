@@ -68,7 +68,7 @@
 
     <dependency>
       <groupId>ua.gov.mdtu.ddm.general</groupId>
-      <artifactId>platform-logger-spring-boot-starter</artifactId>
+      <artifactId>ddm-starter-logger</artifactId>
       <version>1.1.1-SNAPSHOT</version>
     </dependency>
 
