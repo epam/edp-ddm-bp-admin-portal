@@ -1,6 +1,8 @@
 apiVersion: v1.edp.epam.com/v1alpha1
 kind: KeycloakClient
 metadata:
+  annotations:
+    helm.sh/resource-policy: keep
   name: {{ .Values.keycloak.client }}-{{ .Values.keycloak.officerRealm.name }}
   labels:
     app: {{ .Chart.Name }}
