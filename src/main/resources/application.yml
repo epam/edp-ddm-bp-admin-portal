@@ -1,9 +1,46 @@
 server:
   port: 8080
 
+camunda:
+  bpm:
+    authorization:
+      enabled: true
+
 spring:
   application:
     name: business-process-administration-portal
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            provider: keycloak
+            client-id: ${keycloakClientId}
+            client-secret: ${admin-realm.client-secret}
+            authorization-grant-type: authorization_code
+            scope: openid, profile, email
+        provider:
+          keycloak:
+            issuer-uri: ${keycloakAdminUrl}
+            authorization-uri: ${keycloakAdminUrl}/protocol/openid-connect/auth
+            user-info-uri: ${keycloakAdminUrl}/protocol/openid-connect/userinfo
+            token-uri: ${keycloakAdminUrl}/protocol/openid-connect/token
+            jwk-set-uri: ${keycloakAdminUrl}/protocol/openid-connect/certs
+            user-name-attribute: preferred_username
+            logout-url: ${keycloakAdminUrl}/protocol/openid-connect/logout
+
+# Camunda Keycloak Identity Provider Plugin
+plugin.identity.keycloak:
+  keycloak-issuer-url: ${keycloakAdminUrl}
+  keycloak-admin-url: ${keycloakcCamundaPluginAdminUrl}
+  client-secret: ${admin-realm.client-secret}
+  client-id: ${keycloakClientId}
+  use-email-as-camunda-user-id: true
+  use-username-as-camunda-user-id: false
+  use-group-path-as-camunda-group-id: true
+  administrator-user-name: camunda
+  administrator-group-name: camunda-admin
+  disable-s-s-l-certificate-validation: true
 
 # Configuration => prometheus.yml:
 #   scrape_configs:

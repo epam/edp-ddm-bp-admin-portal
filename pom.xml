@@ -17,12 +17,28 @@
   <description>Admin application for BMPS</description>
 
   <properties>
+    <camunda.bpm.identity.keycloak.plugin.verison>2.0.0</camunda.bpm.identity.keycloak.plugin.verison>
+
     <sonar.coverage.exclusions>
-      **/AdminApplication.java
+      **/*.java
     </sonar.coverage.exclusions>
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>org.camunda.bpm.extension</groupId>
+      <artifactId>camunda-bpm-identity-keycloak</artifactId>
+      <version>${camunda.bpm.identity.keycloak.plugin.verison}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-oauth2-client</artifactId>
+    </dependency>
+
     <!--Spring Boot dependencies-->
     <dependency>
       <groupId>org.springframework.boot</groupId>

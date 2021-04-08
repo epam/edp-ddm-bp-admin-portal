@@ -9,6 +9,7 @@ import org.springframework.boot.jdbc.DatabaseDriver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.support.DatabaseStartupValidator;
+import org.springframework.web.context.request.RequestContextListener;
 
 @Configuration
 public class GeneralConfig {
@@ -33,5 +34,10 @@ public class GeneralConfig {
           .map(bf::getBeanDefinition)
           .forEach(it -> it.setDependsOn("databaseStartupValidator"));
     };
+  }
+
+  @Bean
+  public RequestContextListener requestContextListener() {
+    return new RequestContextListener();
   }
 }
