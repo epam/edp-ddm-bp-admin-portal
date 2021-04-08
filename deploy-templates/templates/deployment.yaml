@@ -48,8 +48,6 @@ spec:
             mountPath: {{ .Values.appConfigMountPath }}
           - name: citus-secrets
             mountPath: {{ .Values.appSecretsMountPathBpmsDB }}
-          - name: {{ .Values.camunda.admin.secret }}
-            mountPath: {{ .Values.appSecretsMountPathCamundaAdmin }}
           - name: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.adminRealm.name }}-secret
             mountPath: {{ .Values.appSecretsMountPathAdminKeycloakClient }}
           - name: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.officerRealm.name }}-secret
@@ -73,14 +71,6 @@ spec:
                 path: spring.datasource.username
               - key: password
                 path: spring.datasource.password
-        - name: {{ .Values.camunda.admin.secret }}
-          secret:
-            secretName: {{ .Values.camunda.admin.secret }}
-            items:
-              - key: username
-                path: camunda.bpm.admin-user.id
-              - key: password
-                path: camunda.bpm.admin-user.password
         - name: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.adminRealm.name }}-secret
           secret:
             secretName: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.adminRealm.name }}-secret

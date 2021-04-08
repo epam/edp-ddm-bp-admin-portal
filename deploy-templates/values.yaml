@@ -18,12 +18,6 @@ livenessPath: "/actuator/health/liveness"
 ingress: # expose the service with a route or an ingress depending on platform type
   platform: openshift # openshift or kubernetes
 
-camunda:
-  admin:
-    secret: camunda-admin-secret
-    username: camunda
-    password: camunda
-
 monitoring:
   namespace: openshift-monitoring
 
