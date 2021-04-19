@@ -1,4 +1,4 @@
-package ua.gov.mdtu.ddm.lowcode.bpms.admin.config.security;
+package com.epam.digital.data.platform.bpms.admin.config.security;
 
 import java.util.Collections;
 import lombok.RequiredArgsConstructor;

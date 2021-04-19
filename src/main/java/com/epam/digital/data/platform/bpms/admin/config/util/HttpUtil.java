@@ -1,7 +1,7 @@
-package ua.gov.mdtu.ddm.lowcode.bpms.admin.config.util;
+package com.epam.digital.data.platform.bpms.admin.config.util;
 
+import com.epam.digital.data.platform.bpms.admin.config.security.WebAppSecurityConfig;
 import javax.servlet.http.HttpServletRequest;
-import ua.gov.mdtu.ddm.lowcode.bpms.admin.config.security.WebAppSecurityConfig;
 
 public final class HttpUtil {
 

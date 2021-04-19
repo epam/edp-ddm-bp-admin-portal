@@ -4,7 +4,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>ua.gov.mdtu.ddm.lowcode</groupId>
+    <groupId>com.epam.digital.data.platform</groupId>
     <artifactId>low-code-platform-parent</artifactId>
     <version>1.1.1-SNAPSHOT</version>
     <relativePath/>
@@ -83,7 +83,7 @@
     </dependency>
 
     <dependency>
-      <groupId>ua.gov.mdtu.ddm.general</groupId>
+      <groupId>com.epam.digital.data.platform</groupId>
       <artifactId>ddm-starter-logger</artifactId>
       <version>1.1.1-SNAPSHOT</version>
     </dependency>

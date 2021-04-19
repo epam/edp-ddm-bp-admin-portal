@@ -1,5 +1,6 @@
-package ua.gov.mdtu.ddm.lowcode.bpms.admin.config.security;
+package com.epam.digital.data.platform.bpms.admin.config.security;
 
+import com.epam.digital.data.platform.bpms.admin.config.util.HttpUtil;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +12,6 @@ import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.stereotype.Service;
-import ua.gov.mdtu.ddm.lowcode.bpms.admin.config.util.HttpUtil;
 
 /**
  * Keycloak Logout Handler.

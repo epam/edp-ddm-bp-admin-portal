@@ -1,4 +1,4 @@
-package ua.gov.mdtu.ddm.lowcode.bpms.admin;
+package com.epam.digital.data.platform.bpms.admin;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

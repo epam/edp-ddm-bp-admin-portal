@@ -1,4 +1,4 @@
-package ua.gov.mdtu.ddm.lowcode.bpms.admin.config;
+package com.epam.digital.data.platform.bpms.admin.config;
 
 import java.util.stream.Stream;
 import javax.sql.DataSource;

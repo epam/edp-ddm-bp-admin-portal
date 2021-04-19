@@ -1,4 +1,4 @@
-package ua.gov.mdtu.ddm.lowcode.bpms.admin.config.security;
+package com.epam.digital.data.platform.bpms.admin.config.security;
 
 import org.camunda.bpm.extension.keycloak.plugin.KeycloakIdentityProviderPlugin;
 import org.springframework.boot.context.properties.ConfigurationProperties;
