@@ -22,6 +22,10 @@
     <sonar.coverage.exclusions>
       **/*.java
     </sonar.coverage.exclusions>
+
+    <!-- This property is set by jacoco and used in the surefire config
+			Set it to empty to avoid JVM startup error related to "@{argLine}" when run without jacoco -->
+    <argLine/>
   </properties>
 
   <dependencies>
@@ -138,5 +142,34 @@
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <!-- This maven profile will use spring local profile for test running.
+      For running test from IDE it's needed to add `-Dspring.profiles.active=local`
+      for test explicitly -->
+      <id>local</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.22.2</version>
+            <configuration>
+              <argLine>@{argLine} -Dspring.profiles.active=local</argLine>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <version>2.22.2</version>
+            <configuration>
+              <argLine>@{argLine} -Dspring.profiles.active=local</argLine>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
 </project>
