@@ -29,7 +29,7 @@
 {{- end -}}
 
 {{- define "camunda-cockpit.url" -}}
-{{- printf "%s%s" "https://" (include "camunda-cockpit.hostname" .) }}
+{{- printf "%s%s-%s-%s.%s" "https://" "business-proc-admin" .Values.cdPipelineName .Values.cdPipelineStageName .Values.dnsWildcard }}
 {{- end }}
 
 {{- define "keycloak.url" -}}
