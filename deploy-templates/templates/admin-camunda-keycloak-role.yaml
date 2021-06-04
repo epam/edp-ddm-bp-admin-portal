@@ -1,0 +1,8 @@
+apiVersion: v1.edp.epam.com/v1alpha1
+kind: KeycloakRealmRole
+metadata:
+  name: {{ .Values.keycloak.adminRealm.role }}
+spec:
+  composite: false
+  name: {{ .Values.keycloak.adminRealm.role }}
+  realm: {{ .Values.keycloak.adminRealm.edpKeycloakRealmName }}

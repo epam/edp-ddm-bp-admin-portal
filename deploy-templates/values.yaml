@@ -37,6 +37,7 @@ keycloak:
     name: admin
     edpKeycloakRealmName: admin-portal
     group: camunda-admin
+    role: camunda-admin
   officerRealm: 
     name: officer-portal
     group: officer
