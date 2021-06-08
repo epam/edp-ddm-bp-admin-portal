@@ -35,7 +35,6 @@ keycloak:
   client: camunda-cockpit
   adminRealm: 
     name: admin
-    edpKeycloakRealmName: admin-portal
     group: camunda-admin
     role: camunda-admin
   officerRealm: 

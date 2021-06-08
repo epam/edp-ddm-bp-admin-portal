@@ -5,4 +5,4 @@ metadata:
 spec:
   composite: false
   name: {{ .Values.keycloak.adminRealm.role }}
-  realm: {{ .Values.keycloak.adminRealm.edpKeycloakRealmName }}
+  realm: {{ .Values.keycloak.adminRealm.name }}

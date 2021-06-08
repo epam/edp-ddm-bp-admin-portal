@@ -6,5 +6,5 @@ metadata:
     app: {{ .Chart.Name }}
 spec:
   name: {{ .Values.keycloak.adminRealm.group }}
-  realm: {{ .Values.keycloak.adminRealm.edpKeycloakRealmName }}
+  realm: {{ .Values.keycloak.adminRealm.name }}
 
