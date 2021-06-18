@@ -5,6 +5,9 @@ camunda:
   bpm:
     authorization:
       enabled: true
+    generic-properties:
+      properties:
+        userResourceWhitelistPattern: '[a-zA-Z0-9-_@\.]+|camunda-admin'
 
 spring:
   application:
