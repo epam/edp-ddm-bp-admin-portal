@@ -9,3 +9,5 @@ data:
     keycloakClientId: {{ .Values.keycloak.client }}
     keycloakAdminUrl: {{ template "keycloak.url" . }}/auth/realms/{{ template "keycloak.adminRealm" . }}
     keycloakcCamundaPluginAdminUrl: {{ template "keycloak.url" . }}/auth/admin/realms/{{ template "keycloak.adminRealm" . }}
+
+    spring.autoconfigure.exclude: com.epam.digital.data.platform.starter.security.PlatformSecurityAutoConfiguration,com.epam.digital.data.platform.starter.security.PermitAllSecurityAutoConfiguration
