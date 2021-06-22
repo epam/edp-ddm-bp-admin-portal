@@ -9,6 +9,8 @@ camunda:
       properties:
         userResourceWhitelistPattern: '[a-zA-Z0-9-_@\.]+|camunda-admin'
 
+spring.autoconfigure.exclude: com.epam.digital.data.platform.starter.security.PlatformSecurityAutoConfiguration,com.epam.digital.data.platform.starter.security.PermitAllSecurityAutoConfiguration
+
 spring:
   application:
     name: business-process-administration-portal
