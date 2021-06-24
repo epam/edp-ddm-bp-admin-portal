@@ -6,12 +6,12 @@
   <parent>
     <groupId>com.epam.digital.data.platform</groupId>
     <artifactId>low-code-platform-parent</artifactId>
-    <version>1.2.0-SNAPSHOT</version>
+    <version>1.2.0</version>
     <relativePath/>
   </parent>
 
   <artifactId>business-process-administration-portal</artifactId>
-  <version>1.2.0-SNAPSHOT</version>
+  <version>1.2.0</version>
 
   <name>business-process-administration-portal</name>
   <description>Admin application for BMPS</description>
@@ -89,12 +89,12 @@
     <dependency>
       <groupId>com.epam.digital.data.platform</groupId>
       <artifactId>ddm-starter-logger</artifactId>
-      <version>1.2.1-SNAPSHOT</version>
+      <version>1.2.0</version>
     </dependency>
     <dependency>
       <groupId>com.epam.digital.data.platform</groupId>
       <artifactId>ddm-starter-juel-function</artifactId>
-      <version>1.2.0-SNAPSHOT</version>
+      <version>1.2.0</version>
     </dependency>
 
     <!--Camunda dependencies-->
