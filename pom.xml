@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>business-process-administration-portal</artifactId>
-  <version>1.3.0-SNAPSHOT</version>
+  <version>1.3.1-SNAPSHOT</version>
 
   <name>business-process-administration-portal</name>
   <description>Admin application for BMPS</description>
@@ -21,7 +21,7 @@
     </camunda.bpm.identity.keycloak.plugin.verison>
 
     <ddm-starter-logger.version>1.3.0-SNAPSHOT</ddm-starter-logger.version>
-    <ddm-starter-juel-function.version>1.3.0-SNAPSHOT</ddm-starter-juel-function.version>
+    <ddm-starter-juel-function.version>1.3.1-SNAPSHOT</ddm-starter-juel-function.version>
     <sonar.coverage.exclusions>
       **/*.java
     </sonar.coverage.exclusions>
