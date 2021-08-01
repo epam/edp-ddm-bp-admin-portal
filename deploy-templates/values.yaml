@@ -1,0 +1,43 @@
+image:
+  name: business-process-administration-portal
+  version: latest
+port: 8080
+service:
+  type: ClusterIP
+  port: 8080
+replicas: 1
+appConfigMountPath: "/app/config"
+appSecretsMountPathBpmsDB: "/app/secrets/bpms-db"
+appSecretsMountPathCamundaAdmin: "/app/secrets/camunda-admin"
+appSecretsMountPathAdminKeycloakClient: "/app/secrets/admin-camunda-cockpit"
+appSecretsMountPathOfficerKeycloakClient: "/app/secrets/officer-camunda-cockpit"
+prometheusScrapePath: "/actuator/prometheus"
+readinessPath: "/actuator/health/readiness"
+livenessPath: "/actuator/health/liveness"
+
+ingress: # expose the service with a route or an ingress depending on platform type
+  platform: openshift # openshift or kubernetes
+
+monitoring:
+  namespace: openshift-monitoring
+
+keycloak:
+  keycloakOwner: main
+  ssoRealm:
+    enabled: true
+    name: openshift
+  users: []
+  serviceAccount:
+    clientRoles:
+     - clientId: realm-management
+       roles: ["query-groups", "query-users", "view-users"]
+  public: false
+  client: camunda-cockpit
+  adminRealm: 
+    name: admin
+    group: camunda-admin
+    role: camunda-admin
+  officerRealm: 
+    name: officer-portal
+    group: officer
+  
