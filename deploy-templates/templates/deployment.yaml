@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+  labels:
+    app: {{ .Chart.Name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  replicas: {{ .Values.replicas }}
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}
+      annotations:
+        sidecar.istio.io/inject: "false"        
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.name }}:{{ .Values.image.version }}"
+        ports:
+          - containerPort: {{ .Values.port }}
+            name: ui
+        livenessProbe:
+          httpGet:
+            path: {{ .Values.livenessPath }}
+            port: {{ .Values.port }}
+          failureThreshold: 10
+          initialDelaySeconds: 15
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: {{ .Values.readinessPath }}
+            port: {{ .Values.port }}
+          failureThreshold: 10
+          initialDelaySeconds: 15
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        volumeMounts:
+          - name: {{ .Chart.Name }}
+            mountPath: {{ .Values.appConfigMountPath }}
+          - name: citus-secrets
+            mountPath: {{ .Values.appSecretsMountPathBpmsDB }}
+          - name: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.adminRealm.name }}-secret
+            mountPath: {{ .Values.appSecretsMountPathAdminKeycloakClient }}
+          - name: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.officerRealm.name }}-secret
+            mountPath: {{ .Values.appSecretsMountPathOfficerKeycloakClient }}
+      serviceAccountName: {{ .Chart.Name }}
+      {{- if .Values.nodeSelector }}
+      nodeSelector: {{ toYaml .Values.nodeSelector | nindent 8 }}
+      {{- end }}
+      {{- if .Values.podSecurityContext }}
+      securityContext: {{ toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- end }}
+      volumes:
+        - name: {{ .Chart.Name }}
+          configMap:
+            name: {{ .Chart.Name }}
+        - name: citus-secrets
+          secret:
+            secretName: citus-secrets
+            items:
+              - key: username
+                path: spring.datasource.username
+              - key: password
+                path: spring.datasource.password
+        - name: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.adminRealm.name }}-secret
+          secret:
+            secretName: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.adminRealm.name }}-secret
+            items:
+              - key: clientSecret
+                path: admin-realm.client-secret
+        - name: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.officerRealm.name }}-secret
+          secret:
+            secretName: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.officerRealm.name }}-secret
+            items:
+              - key: clientSecret
+                path: officer-realm.client-secret             
