@@ -5,6 +5,7 @@ metadata:
   namespace: {{ .Values.monitoring.namespace }}
   labels:
     app: bpap-{{ .Values.namespace }}
+    relatedNamespace: {{ .Release.Namespace }}
 spec:
   endpoints:
     - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
