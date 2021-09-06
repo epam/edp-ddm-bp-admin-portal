@@ -35,6 +35,11 @@ spring:
             jwk-set-uri: ${keycloakAdminUrl}/protocol/openid-connect/certs
             user-name-attribute: preferred_username
             logout-url: ${keycloakAdminUrl}/protocol/openid-connect/logout
+  cloud:
+    discovery:
+      client:
+        health-indicator:
+          enabled: false
 
 # Camunda Keycloak Identity Provider Plugin
 plugin.identity.keycloak:
@@ -72,6 +77,8 @@ management:
     readinessstate:
       enabled: true
     kafka:
+      enabled: false
+    kubernetes:
       enabled: false
 
 keycloak:
