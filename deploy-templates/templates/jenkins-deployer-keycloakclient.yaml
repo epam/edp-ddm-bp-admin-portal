@@ -3,7 +3,7 @@ kind: KeycloakClient
 metadata:
   name: {{ .Values.keycloak.clientName }}
   labels:
-  {{- include "jenkins-operator.metaLabels" . | nindent 4 }}
+    app: {{ .Chart.Name }}
   annotations:
     helm.sh/resource-policy: keep
   namespace: {{ .Release.Namespace }}
@@ -20,4 +20,4 @@ spec:
     realmRoles:
       - camunda-admin
   webUrl: {{ template "jenkins-operator.jenkinsUrl" . }}
-  targetRealm: {{ template "keycloak.realm" . }}
+  targetRealm: {{ template "keycloak.adminRealm" . }}
