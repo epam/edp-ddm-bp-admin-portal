@@ -35,3 +35,17 @@
 {{- define "keycloak.url" -}}
 {{- printf "%s%s" "https://" .Values.keycloak.host }}
 {{- end -}}
+
+{{/*
+Define Jenkins URL
+*/}}
+{{- define "jenkins-operator.jenkinsBaseUrl" -}}
+{{- printf "%s-%s-%s" "jenkins" .Values.edpProject (include "edp.hostnameSuffix" .) }}
+{{- end }}
+
+{{/*
+Define Jenkins URL
+*/}}
+{{- define "jenkins-operator.jenkinsUrl" -}}
+{{- printf "%s%s" "https://" (include "jenkins-operator.jenkinsBaseUrl" .) }}
+{{- end }}

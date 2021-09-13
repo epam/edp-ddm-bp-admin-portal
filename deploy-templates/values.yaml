@@ -22,6 +22,8 @@ monitoring:
   namespace: openshift-monitoring
 
 keycloak:
+  secretName: jenkins-keycloak-client
+  clientName: jenkins-deployer
   keycloakOwner: main
   ssoRealm:
     enabled: true
