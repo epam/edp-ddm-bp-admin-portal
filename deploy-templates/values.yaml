@@ -32,3 +32,5 @@ keycloak:
     name: officer-portal
 
 javaOpts: "-Xms512m -Xmx512m"
+
+deployProfile: prod
