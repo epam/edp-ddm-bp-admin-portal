@@ -11,3 +11,7 @@ data:
     keycloakcCamundaPluginAdminUrl: {{ template "keycloak.url" . }}/auth/admin/realms/{{ template "keycloak.adminRealm" . }}
 
     spring.autoconfigure.exclude: com.epam.digital.data.platform.starter.security.PlatformSecurityAutoConfiguration,com.epam.digital.data.platform.starter.security.PermitAllSecurityAutoConfiguration
+
+    {{- if eq .Values.deployProfile "dev" }}
+    management.endpoints.web.exposure.include: '*'
+    {{- end }}
