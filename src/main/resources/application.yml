@@ -87,3 +87,20 @@ keycloak:
     realm: test-realm
     client-id: client-id
     client-secret: client-secret
+
+platform:
+  logging:
+    aspect:
+      enabled: false
+    primary-url:
+      enabled: true
+
+logbook:
+  info-logging:
+    enabled: true
+  strategy: request-body-on-debug
+  exclude:
+    - /actuator/**
+  obfuscate:
+    headers:
+      - x-access-token
