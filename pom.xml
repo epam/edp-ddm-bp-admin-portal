@@ -20,7 +20,7 @@
     <camunda.bpm.identity.keycloak.plugin.verison>2.0.0
     </camunda.bpm.identity.keycloak.plugin.verison>
 
-    <ddm-starter-logger.version>1.4.0</ddm-starter-logger.version>
+    <ddm-starter-logger.version>1.5.0-SNAPSHOT</ddm-starter-logger.version>
     <ddm-starter-juel-function.version>1.4.0</ddm-starter-juel-function.version>
     <sonar.coverage.exclusions>
       **/*.java
