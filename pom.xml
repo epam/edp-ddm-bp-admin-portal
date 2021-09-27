@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>business-process-administration-portal</artifactId>
-  <version>1.4.2</version>
+  <version>1.4.3</version>
 
   <name>business-process-administration-portal</name>
   <description>Admin application for BMPS</description>
@@ -20,8 +20,8 @@
     <camunda.bpm.identity.keycloak.plugin.verison>2.0.0
     </camunda.bpm.identity.keycloak.plugin.verison>
 
-    <ddm-starter-logger.version>1.4.1</ddm-starter-logger.version>
-    <ddm-starter-juel-function.version>1.4.0</ddm-starter-juel-function.version>
+    <ddm-starter-logger.version>1.4.2</ddm-starter-logger.version>
+    <ddm-starter-juel-function.version>1.4.1</ddm-starter-juel-function.version>
     <sonar.coverage.exclusions>
       **/*.java
     </sonar.coverage.exclusions>
