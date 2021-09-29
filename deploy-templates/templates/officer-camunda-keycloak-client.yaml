@@ -1,0 +1,32 @@
+apiVersion: v1.edp.epam.com/v1alpha1
+kind: KeycloakClient
+metadata:
+  annotations:
+    helm.sh/resource-policy: keep
+  name: {{ .Values.keycloak.client }}-{{ .Values.keycloak.officerRealm.name }}
+  labels:
+    app: {{ .Chart.Name }}
+spec:
+  clientId: {{ .Values.keycloak.client }}
+  public: {{ .Values.keycloak.public }}
+  {{- if eq .Values.keycloak.public false }}
+  serviceAccount:
+    enabled: true
+    clientRoles: {{ .Values.keycloak.serviceAccount.clientRoles | toYaml | nindent 4 }}
+  {{- else }}
+  serviceAccount:
+    enabled: false
+  {{- end }}
+  directAccess: false
+  audRequired: false
+  {{- if .Values.keycloak.clientRoles }}
+  clientRoles: {{ .Values.keycloak.serviceAccount.clientRoles | toYaml | nindent 4 }}
+  {{- end }}
+  {{- if .Values.keycloak.realmRoles }}
+  realmRoles: {{ .Values.keycloak.realmRoles | toYaml | nindent 4 }}
+  {{- end }}
+  {{- if .Values.keycloak.protocolMappers }}
+  protocolMappers: {{ .Values.keycloak.protocolMappers | toYaml | nindent 4 }}
+  {{- end }}
+  targetRealm: {{ template "keycloak.officerRealm" . }}
+  webUrl: {{ template "camunda-cockpit.url" . }}
