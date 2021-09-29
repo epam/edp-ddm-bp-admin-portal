@@ -22,24 +22,8 @@ monitoring:
   namespace: openshift-monitoring
 
 keycloak:
-  secretName: jenkins-keycloak-client
-  clientName: jenkins-deployer
-  keycloakOwner: main
-  ssoRealm:
-    enabled: true
-    name: openshift
-  users: []
-  serviceAccount:
-    clientRoles:
-     - clientId: realm-management
-       roles: ["query-groups", "query-users", "view-users"]
-  public: false
   client: camunda-cockpit
   adminRealm: 
     name: admin
-    group: camunda-admin
-    role: camunda-admin
   officerRealm: 
     name: officer-portal
-    group: officer
-  
