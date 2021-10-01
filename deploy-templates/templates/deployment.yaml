@@ -32,7 +32,7 @@ spec:
             path: {{ .Values.livenessPath }}
             port: {{ .Values.port }}
           failureThreshold: 10
-          initialDelaySeconds: 15
+          initialDelaySeconds: 100
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 5
@@ -41,10 +41,20 @@ spec:
             path: {{ .Values.readinessPath }}
             port: {{ .Values.port }}
           failureThreshold: 10
-          initialDelaySeconds: 15
+          initialDelaySeconds: 100
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 5
+        resources:
+          limits:
+            cpu: 500m
+            memory: 768Mi
+          requests:
+            cpu: 500m
+            memory: 768Mi
+        env:
+          - name: JAVA_OPTS
+            value: {{ .Values.javaOpts }}
         volumeMounts:
           - name: {{ .Chart.Name }}
             mountPath: {{ .Values.appConfigMountPath }}
