@@ -27,3 +27,5 @@ keycloak:
     name: admin
   officerRealm: 
     name: officer-portal
+
+javaOpts: "-Xms512m -Xmx512m"
