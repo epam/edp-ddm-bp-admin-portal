@@ -10,10 +10,3 @@ plugin.identity.keycloak:
   keycloak-admin-url: http://localhost:8080
   client-id: client-id
   client-secret: client-secret
-
-keycloak:
-  url: http://localhost:8200/auth
-  system-user:
-    realm: test-realm
-    client-id: client-id
-    client-secret: client-secret
