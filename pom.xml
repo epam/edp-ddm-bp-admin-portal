@@ -21,7 +21,7 @@
     </camunda.bpm.identity.keycloak.plugin.verison>
 
     <ddm-starter-logger.version>1.5.0-SNAPSHOT</ddm-starter-logger.version>
-    <ddm-starter-juel-function.version>1.4.0</ddm-starter-juel-function.version>
+    <ddm-starter-juel-function.version>1.5.1-SNAPSHOT</ddm-starter-juel-function.version>
     <nimbusds.oauth2-oidc-sdk.version>9.18</nimbusds.oauth2-oidc-sdk.version>
     <sonar.coverage.exclusions>
       **/*.java
