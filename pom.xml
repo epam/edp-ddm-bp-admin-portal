@@ -22,6 +22,7 @@
 
     <ddm-starter-logger.version>1.4.2</ddm-starter-logger.version>
     <ddm-starter-juel-function.version>1.4.1</ddm-starter-juel-function.version>
+    <nimbusds.oauth2-oidc-sdk.version>9.18</nimbusds.oauth2-oidc-sdk.version>
     <sonar.coverage.exclusions>
       **/*.java
     </sonar.coverage.exclusions>
@@ -32,6 +33,12 @@
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>com.nimbusds</groupId>
+      <artifactId>oauth2-oidc-sdk</artifactId>
+      <version>${nimbusds.oauth2-oidc-sdk.version}</version>
+      <scope>runtime</scope>
+    </dependency>
     <dependency>
       <groupId>org.camunda.bpm.extension</groupId>
       <artifactId>camunda-bpm-identity-keycloak</artifactId>
