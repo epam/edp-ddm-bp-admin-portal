@@ -1,32 +1,49 @@
 # business-process-administration-portal
 
-##### Business process administration portal service utilizes capabilities of Camunda API:
+### Overview
 
-* `It is admin application for BMPS. The application brings the following functionality:`
-    * [Camunda Cockpit](https://docs.camunda.org/manual/latest/webapps/cockpit/) for monitoring and operations; 
-    * [Camunda Admin](https://docs.camunda.org/manual/latest/webapps/admin/) for user management;
-    * [Camunda Tasklist](https://docs.camunda.org/manual/latest/webapps/tasklist/) for human task management;
+* Business process administration portal service utilizes capabilities of Camunda API. It is admin
+  application for BMPS;
+* [Camunda Cockpit](https://docs.camunda.org/manual/latest/webapps/cockpit/) for monitoring and
+  operations;
+* [Camunda Admin](https://docs.camunda.org/manual/latest/webapps/admin/) for user management;
+* [Camunda Tasklist](https://docs.camunda.org/manual/latest/webapps/tasklist/) for human task
+  management.
+  
+### Usage
 
-##### Running the tests:
+#### Prerequisites:
+
+* Postgres database is configured and running;
+* Keycloak is configured and running.
+
+#### Configuration
+
+Available properties for authentication camunda web application:
+
+* `keycloakClientId` -  client identifier;
+* `keycloakAdminUrl` - url for admin realm;
+* `keycloakcCamundaPluginAdminUrl` - keycloak admin url.
+
+#### Run application:
+
+* `java -jar <file-name>.jar`
+
+### Local development
+
+1. Run spring boot application using 'local' profile:
+    * `mvn spring-boot:run -Drun.profiles=local` OR using appropriate functions of your IDE;
+    * `application-local.yml` is configuration file for local profile.
+2. The application will be available on: http://localhost:8080
+    * username: `camunda`;
+    * password: `camunda`.
+
+### Test execution
 
 * Tests could be run via maven command:
     * `mvn verify` OR using appropriate functions of your IDE.
+    
+### License
 
-##### Local development:
-
-* run spring boot application using 'local' profile:
-  * `mvn spring-boot:run -Drun.profiles=local` OR using appropriate functions of your IDE.
-* by default (*can be configured in the application-local.yml file*), the application will be available on:  http://localhost:8080
-  * username: `camunda`
-  * password: `camunda`
-* logging settings (*level,pattern,output file*) for local development specified in the `application-local.yml` file;
-  
-##### Logging:
-
-* `Default:`
-  * For classes with annotation RestController/Service, logging is enabled by default for all public methods of a class;
-* `To set up logging:`
-  * *@Logging* - can annotate a class or method to enable logging;
-  * *@Confidential* - can annotate method or method parameters to exclude confidential data from logs:
-    - For a method - exclude the result of execution;
-    - For method parameters - exclude method parameters;
+The business-process-administration-portal is released under version 2.0 of
+the [Apache License](https://www.apache.org/licenses/LICENSE-2.0).
