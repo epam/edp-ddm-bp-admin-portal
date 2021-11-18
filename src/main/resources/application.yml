@@ -14,6 +14,8 @@ camunda:
 spring.autoconfigure.exclude: com.epam.digital.data.platform.starter.security.PlatformSecurityAutoConfiguration,com.epam.digital.data.platform.starter.security.PermitAllSecurityAutoConfiguration
 
 spring:
+  sleuth:
+    enabled: false
   application:
     name: business-process-administration-portal
   security:
