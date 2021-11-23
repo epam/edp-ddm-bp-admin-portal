@@ -45,5 +45,5 @@ Available properties for authentication camunda web application:
     
 ### License
 
-The business-process-administration-portal is released under version 2.0 of
-the [Apache License](https://www.apache.org/licenses/LICENSE-2.0).
+The business-process-administration-portal is Open Source software released under
+the [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0).
