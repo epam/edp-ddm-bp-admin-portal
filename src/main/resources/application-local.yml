@@ -3,7 +3,6 @@ logging:
   level:
     root: "info"
     org.springframework.web: "debug"
-    ua.gov.mdtu.ddm.lowcode: "debug"
   file:
     name: ./logs/${spring.application.name}.log
   pattern:
