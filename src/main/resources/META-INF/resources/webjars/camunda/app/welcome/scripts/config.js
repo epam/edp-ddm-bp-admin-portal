@@ -1,9 +1,5 @@
-window.camWelcomeConf = {
-  customScripts: {
-    ngDeps: ['custom-logout'],
-    deps: ['jquery', 'custom-logout'],
-    paths: {
-      'custom-logout': '../logout'
-    }
-  }
+export default {
+  customScripts: [
+    'custom/logout'
+  ]
 };
