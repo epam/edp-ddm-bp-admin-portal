@@ -6,7 +6,7 @@
   <parent>
     <groupId>com.epam.digital.data.platform</groupId>
     <artifactId>low-code-platform-parent</artifactId>
-    <version>1.2.0</version>
+    <version>1.5.1-SNAPSHOT</version>
     <relativePath/>
   </parent>
 
@@ -17,13 +17,12 @@
   <description>Admin application for BMPS</description>
 
   <properties>
-    <camunda.bpm.identity.keycloak.plugin.verison>2.0.0
-    </camunda.bpm.identity.keycloak.plugin.verison>
+    <camunda.bpm.identity.keycloak.plugin.verison>2.2.3</camunda.bpm.identity.keycloak.plugin.verison>
 
-    <ddm-starter-logger.version>1.5.1-SNAPSHOT</ddm-starter-logger.version>
-    <ddm-starter-juel-function.version>1.5.2-SNAPSHOT</ddm-starter-juel-function.version>
+    <ddm-starter-logger.version>1.5.2-SNAPSHOT</ddm-starter-logger.version>
+    <ddm-starter-juel-function.version>1.5.5-SNAPSHOT</ddm-starter-juel-function.version>
     <nimbusds.oauth2-oidc-sdk.version>9.18</nimbusds.oauth2-oidc-sdk.version>
-    <log4j.version>2.16.0</log4j.version>
+    <log4j.version>2.17.0</log4j.version>
     <sonar.coverage.exclusions>
       **/*.java
     </sonar.coverage.exclusions>
@@ -88,8 +87,14 @@
     </dependency>
 
     <dependency>
-      <artifactId>spring-cloud-starter-kubernetes-config</artifactId>
       <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-kubernetes-client-config</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-logging</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <dependency>

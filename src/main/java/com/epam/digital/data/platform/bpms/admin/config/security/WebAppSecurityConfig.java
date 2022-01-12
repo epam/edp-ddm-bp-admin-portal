@@ -21,7 +21,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.engine.rest.security.auth.ProcessEngineAuthenticationFilter;
 import org.camunda.bpm.webapp.impl.security.auth.ContainerBasedAuthenticationFilter;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -40,7 +39,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @RequiredArgsConstructor
 @Order(SecurityProperties.BASIC_AUTH_ORDER - 10)
-@ConditionalOnMissingClass("org.springframework.test.context.junit4.SpringJUnit4ClassRunner")
 public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter {
 
   private static final String ACTUATOR_URL = "/actuator/**";
@@ -77,7 +75,8 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Bean
   @SuppressWarnings({"rawtypes", "unchecked"})
-  public FilterRegistrationBean containerBasedAuthenticationFilter(SecurityProperties securityProperties) {
+  public FilterRegistrationBean containerBasedAuthenticationFilter(
+      SecurityProperties securityProperties) {
     FilterRegistrationBean filterRegistration = new FilterRegistrationBean();
     filterRegistration.setFilter(new ContainerBasedAuthenticationFilter());
     filterRegistration.setInitParameters(Collections.singletonMap(
