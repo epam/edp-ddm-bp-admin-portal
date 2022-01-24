@@ -2,14 +2,41 @@ server:
   port: 8080
 
 camunda:
+  admin-user-id: camunda
+  admin-group-id: camunda-admin
   bpm:
     authorization:
       enabled: true
     generic-properties:
       properties:
         userResourceWhitelistPattern: '[a-zA-Z0-9-_@\.]+|camunda-admin'
+        history-cleanup-enabled: true
+        history-cleanup-strategy: removalTimeBased
+        history-removal-time-strategy: end
+        history-time-to-live: P10D
+        history-cleanup-batch-window-start-time: 03:00
+        history-cleanup-batch-window-end-time: 04:00
+        history-cleanup-degree-of-parallelism: 1
+        history-cleanup-batch-size: 200
     job-execution:
       enabled: false
+    history:
+      level: AUDIT
+    history-level: FULL
+    history-publisher:
+      kafka:
+        enabled: true
+        topics:
+          history-process-instance-topic:
+            name: bpm-history-process
+            num-partitions: 1
+            replication-factor: 1
+            retention-policy-in-days: 7
+          history-task-topic:
+            name: bpm-history-task
+            num-partitions: 1
+            replication-factor: 1
+            retention-policy-in-days: 7
 
 spring.autoconfigure.exclude: com.epam.digital.data.platform.starter.security.PlatformSecurityAutoConfiguration,com.epam.digital.data.platform.starter.security.PermitAllSecurityAutoConfiguration
 
@@ -52,8 +79,8 @@ plugin.identity.keycloak:
   use-email-as-camunda-user-id: true
   use-username-as-camunda-user-id: false
   use-group-path-as-camunda-group-id: true
-  administrator-user-name: camunda
-  administrator-group-name: camunda-admin
+  administrator-user-name: ${camunda.admin-user-id}
+  administrator-group-name: ${camunda.admin-group-id}
   disable-s-s-l-certificate-validation: true
 
 # Configuration => prometheus.yml:
