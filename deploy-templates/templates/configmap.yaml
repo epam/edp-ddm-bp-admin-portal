@@ -15,3 +15,5 @@ data:
     {{- if eq .Values.deployProfile "dev" }}
     management.endpoints.web.exposure.include: '*'
     {{- end }}
+
+    camunda.bpm.history-publisher.kafka.bootstrap: {{ .Values.kafka.service }}

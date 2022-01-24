@@ -34,3 +34,6 @@ keycloak:
 javaOpts: "-Xms512m -Xmx512m"
 
 deployProfile: prod
+
+kafka:
+  service: kafka-cluster-kafka-bootstrap:9092
