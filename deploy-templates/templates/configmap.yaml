@@ -17,3 +17,7 @@ data:
     {{- end }}
 
     camunda.bpm.history-publisher.kafka.bootstrap: {{ .Values.kafka.service }}
+    camunda.bpm.history-publisher.kafka.ssl.enabled: {{ .Values.kafka.sslEnabled }}
+    camunda.bpm.history-publisher.kafka.ssl.keystore-certificate: {{ .Values.kafka.sslUserCertificate }}
+    camunda.bpm.history-publisher.kafka.ssl.keystore-key: {{ .Values.kafka.sslUserKey }}
+    camunda.bpm.history-publisher.kafka.ssl.truststore-certificate: {{ .Values.kafka.sslClusterCertificate }}
