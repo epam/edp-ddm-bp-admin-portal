@@ -6,12 +6,12 @@
   <parent>
     <groupId>com.epam.digital.data.platform</groupId>
     <artifactId>low-code-platform-parent</artifactId>
-    <version>1.5.1-SNAPSHOT</version>
+    <version>1.6.0.1</version>
     <relativePath/>
   </parent>
 
   <artifactId>business-process-administration-portal</artifactId>
-  <version>1.5.2-SNAPSHOT</version>
+  <version>1.6.0</version>
 
   <name>business-process-administration-portal</name>
   <description>Admin application for BMPS</description>
@@ -19,11 +19,11 @@
   <properties>
     <camunda.bpm.identity.keycloak.plugin.verison>2.2.3</camunda.bpm.identity.keycloak.plugin.verison>
 
-    <ddm-starter-logger.version>1.5.2-SNAPSHOT</ddm-starter-logger.version>
-    <ddm-starter-juel-function.version>1.5.5-SNAPSHOT</ddm-starter-juel-function.version>
+    <ddm-starter-logger.version>1.6.0.1</ddm-starter-logger.version>
+    <ddm-starter-juel-function.version>1.6.0.1</ddm-starter-juel-function.version>
     <nimbusds.oauth2-oidc-sdk.version>9.18</nimbusds.oauth2-oidc-sdk.version>
     <log4j.version>2.17.0</log4j.version>
-    <history-event-handler.version>1.5.7-SNAPSHOT</history-event-handler.version>
+    <history-event-handler.version>1.6.0.1</history-event-handler.version>
     <sonar.coverage.exclusions>
       **/*.java
     </sonar.coverage.exclusions>
