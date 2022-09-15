@@ -13,17 +13,16 @@ camunda:
         history-cleanup-enabled: true
         history-cleanup-strategy: removalTimeBased
         history-removal-time-strategy: end
-        history-time-to-live: P1D
-        history-cleanup-batch-window-start-time: "20:00"
-        history-cleanup-batch-window-end-time: "22:00"
+        history-time-to-live: P10D
+        history-cleanup-batch-window-start-time: 03:00
+        history-cleanup-batch-window-end-time: 04:00
         history-cleanup-degree-of-parallelism: 1
-        history-cleanup-batch-size: 500
+        history-cleanup-batch-size: 200
     job-execution:
       enabled: false
     history:
       level: AUDIT
-    history-level: AUDIT
-    database-history-level: ACTIVITY
+    history-level: FULL
     history-publisher:
       kafka:
         enabled: true
