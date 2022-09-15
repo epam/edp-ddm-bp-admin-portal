@@ -20,9 +20,6 @@ camunda:
         history-cleanup-batch-size: 200
     job-execution:
       enabled: false
-    history:
-      level: AUDIT
-    history-level: FULL
     history-publisher:
       kafka:
         enabled: true
