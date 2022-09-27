@@ -75,7 +75,7 @@ spec:
         volumeMounts:
           - name: {{ .Chart.Name }}
             mountPath: {{ .Values.appConfigMountPath }}
-          - name: citus-secrets
+          - name: {{ .Values.db.secret.name }}
             mountPath: {{ .Values.appSecretsMountPathBpmsDB }}
           - name: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.adminRealm.name }}-secret
             mountPath: {{ .Values.appSecretsMountPathAdminKeycloakClient }}
@@ -92,11 +92,11 @@ spec:
         - name: {{ .Chart.Name }}
           configMap:
             name: {{ .Chart.Name }}
-        - name: citus-secrets
+        - name: {{ .Values.db.secret.name }}
           secret:
-            secretName: citus-secrets
+            secretName: {{ .Values.db.secret.name }}
             items:
-              - key: username
+              - key: user
                 path: spring.datasource.username
               - key: password
                 path: spring.datasource.password

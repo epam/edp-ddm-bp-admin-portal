@@ -49,3 +49,7 @@ camunda:
   bpm:
     historyLevel: AUDIT
     databaseHistoryLevel: ACTIVITY
+
+db:
+  secret:
+    name: operational-pguser-postgres
