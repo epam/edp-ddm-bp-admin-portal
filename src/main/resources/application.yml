@@ -10,7 +10,7 @@ camunda:
     generic-properties:
       properties:
         userResourceWhitelistPattern: '[a-zA-Z0-9-_@\.]+|camunda-admin'
-        history-cleanup-enabled: true
+        history-cleanup-enabled: false
         history-cleanup-strategy: removalTimeBased
         history-removal-time-strategy: end
         history-time-to-live: P10D
