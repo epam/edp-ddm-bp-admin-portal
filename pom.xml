@@ -25,6 +25,7 @@
     <log4j.version>2.17.0</log4j.version>
     <history-event-handler.version>1.6.0.6</history-event-handler.version>
     <spring-security-core.version>5.7.5</spring-security-core.version>
+    <keycloak-core.version>15.1.1</keycloak-core.version>
     <sonar.coverage.exclusions>
       **/*.java
     </sonar.coverage.exclusions>
@@ -41,9 +42,14 @@
         <artifactId>spring-security-core</artifactId>
         <version>${spring-security-core.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.keycloak</groupId>
+        <artifactId>keycloak-core</artifactId>
+        <version>${keycloak-core.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
-  
+
   <dependencies>
     <dependency>
       <groupId>com.nimbusds</groupId>
