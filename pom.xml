@@ -19,11 +19,12 @@
   <properties>
     <camunda.bpm.identity.keycloak.plugin.verison>2.2.3</camunda.bpm.identity.keycloak.plugin.verison>
 
-    <ddm-starter-logger.version>1.6.0.1</ddm-starter-logger.version>
+    <ddm-starter-logger.version>1.6.0.9</ddm-starter-logger.version>
     <ddm-starter-juel-function.version>1.6.0.3</ddm-starter-juel-function.version>
     <nimbusds.oauth2-oidc-sdk.version>9.18</nimbusds.oauth2-oidc-sdk.version>
     <log4j.version>2.17.0</log4j.version>
     <history-event-handler.version>1.6.0.6</history-event-handler.version>
+    <spring-security-core.version>5.7.5</spring-security-core.version>
     <sonar.coverage.exclusions>
       **/*.java
     </sonar.coverage.exclusions>
@@ -33,6 +34,16 @@
     <argLine/>
   </properties>
 
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.security</groupId>
+        <artifactId>spring-security-core</artifactId>
+        <version>${spring-security-core.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  
   <dependencies>
     <dependency>
       <groupId>com.nimbusds</groupId>
