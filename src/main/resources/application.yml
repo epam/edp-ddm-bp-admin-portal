@@ -7,6 +7,8 @@ camunda:
   bpm:
     authorization:
       enabled: true
+    database:
+      schema-update: false
     generic-properties:
       properties:
         userResourceWhitelistPattern: '[a-zA-Z0-9-_@\.]+|camunda-admin'
