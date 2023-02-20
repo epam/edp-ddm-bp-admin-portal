@@ -27,6 +27,7 @@
     <bpms.version>1.9.4.9</bpms.version>
     <spring-security-core.version>5.7.5</spring-security-core.version>
     <keycloak-core.version>15.1.1</keycloak-core.version>
+    <postgresql.version>42.3.3</postgresql.version>
     <sonar.coverage.exclusions>
       **/*.java
     </sonar.coverage.exclusions>
@@ -158,6 +159,7 @@
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
+      <version>${postgresql.version}</version>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
