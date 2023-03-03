@@ -27,3 +27,8 @@ data:
     data-platform.kafka.ssl.keystore-certificate: {{ .Values.kafka.sslUserCertificate }}
     data-platform.kafka.ssl.keystore-key: {{ .Values.kafka.sslUserKey }}
     data-platform.kafka.ssl.truststore-certificate: {{ .Values.kafka.sslClusterCertificate }}
+
+    bp-admin-portal:
+      monitoring:
+        metrics:
+          enabled: {{ .Values.bpAdminPortal.monitoring.metrics.enabled }}

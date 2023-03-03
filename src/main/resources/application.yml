@@ -136,3 +136,7 @@ logbook:
   obfuscate:
     headers:
       - x-access-token
+
+bpm:
+  metrics:
+    enabled: ${bp-admin-portal.monitoring.metrics.enabled}
