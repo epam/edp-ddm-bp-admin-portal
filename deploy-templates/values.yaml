@@ -53,3 +53,9 @@ camunda:
 db:
   secret:
     name: operational-pguser-postgres
+
+bpAdminPortal:
+  monitoring:
+    metrics:
+      enabled: true
+      scrapeInterval: 60s

@@ -26,3 +26,8 @@ logging:
     #    Logging patterns inherited from Spring Boot default logging system configuration
     console: '%d{${LOG_DATEFORMAT_PATTERN}} [trace:%X{traceId}/%X{spanId}/%X{x-request-id}] ${LOG_LEVEL_PATTERN} %pid --- [%15.15t] %-40.40c{1.} : %m%n${LOG_EXCEPTION_CONVERSION_WORD}'
     file: '%d{${LOG_DATEFORMAT_PATTERN}} ${LOG_LEVEL_PATTERN} %pid --- [%t] %-40.40c{1.} : %m%n${LOG_EXCEPTION_CONVERSION_WORD}'
+
+bp-admin-portal:
+  monitoring:
+    metrics:
+      enabled: true
