@@ -31,4 +31,4 @@ data:
     bp-admin-portal:
       monitoring:
         metrics:
-          enabled: {{ .Values.bpAdminPortal.monitoring.metrics.enabled }}
+          enabled: {{ .Values.global.bpAdminPortal.camunda.bpm.metrics.enabled }}

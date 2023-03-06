@@ -1,5 +1,11 @@
 global:
   disableRequestsLimits: false
+  bpAdminPortal:
+    camunda:
+      bpm:
+        metrics:
+          enabled: true
+          scrapeInterval: 60s
 
 image:
   name: business-process-administration-portal
@@ -53,9 +59,3 @@ camunda:
 db:
   secret:
     name: operational-pguser-postgres
-
-bpAdminPortal:
-  monitoring:
-    metrics:
-      enabled: true
-      scrapeInterval: 60s

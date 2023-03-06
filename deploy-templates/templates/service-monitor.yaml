@@ -9,7 +9,7 @@ metadata:
 spec:
   endpoints:
     - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
-      interval: {{ .Values.bpAdminPortal.monitoring.metrics.scrapeInterval }}
+      interval: {{ .Values.global.bpAdminPortal.camunda.bpm.metrics.scrapeInterval }}
       path: {{ .Values.prometheusScrapePath }}
       scheme: http
       targetPort: {{ .Values.service.port }}
