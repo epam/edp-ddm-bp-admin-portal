@@ -32,9 +32,9 @@ monitoring:
 
 keycloak:
   client: camunda-cockpit
-  adminRealm: 
+  adminRealm:
     name: admin
-  officerRealm: 
+  officerRealm:
     name: officer-portal
 
 javaOpts: "-Xms512m -Xmx512m"
@@ -59,3 +59,8 @@ camunda:
 db:
   secret:
     name: operational-pguser-postgres
+
+edpComponent:
+  description: "Користувацький інтерфейс для перегляду стану виконання та управління бізнес-процесами реєстру"
+  displayName: "Веб-інтерфейс управління виконанням бізнес-процесів (Business Proc Adm)"
+  operationalZone: "registry-administration-zone"
