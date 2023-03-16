@@ -17,13 +17,14 @@
   <description>Admin application for BMPS</description>
 
   <properties>
-    <camunda.bpm.identity.keycloak.plugin.verison>2.2.3</camunda.bpm.identity.keycloak.plugin.verison>
+    <camunda.bpm.identity.keycloak.plugin.verison>2.2.3
+    </camunda.bpm.identity.keycloak.plugin.verison>
 
     <ddm-starter-logger.version>1.6.0.9</ddm-starter-logger.version>
     <ddm-starter-juel-function.version>1.6.0.3</ddm-starter-juel-function.version>
     <nimbusds.oauth2-oidc-sdk.version>9.18</nimbusds.oauth2-oidc-sdk.version>
     <log4j.version>2.17.0</log4j.version>
-    <history-event-handler.version>1.6.0.6</history-event-handler.version>
+    <bpms.version>1.9.4.8</bpms.version>
     <spring-security-core.version>5.7.5</spring-security-core.version>
     <keycloak-core.version>15.1.1</keycloak-core.version>
     <sonar.coverage.exclusions>
@@ -74,13 +75,18 @@
     <dependency>
       <groupId>com.epam.digital.data.platform</groupId>
       <artifactId>ddm-bpm-history-event-handler</artifactId>
-      <version>${history-event-handler.version}</version>
+      <version>${bpms.version}</version>
       <exclusions>
         <exclusion>
           <groupId>com.epam.digital.data.platform</groupId>
           <artifactId>ddm-starter-trembita-integration</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.epam.digital.data.platform</groupId>
+      <artifactId>ddm-bpm-metrics-plugin</artifactId>
+      <version>${bpms.version}</version>
     </dependency>
 
     <!--Spring Boot dependencies-->
