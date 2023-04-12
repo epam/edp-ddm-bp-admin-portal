@@ -12,7 +12,7 @@ data:
     keycloakAdminUrl: {{ template "keycloak.url" . }}/auth/realms/{{ template "keycloak.adminRealm" . }}
     keycloakcCamundaPluginAdminUrl: {{ template "keycloak.url" . }}/auth/admin/realms/{{ template "keycloak.adminRealm" . }}
 
-    spring.autoconfigure.exclude: com.epam.digital.data.platform.starter.security.PlatformSecurityAutoConfiguration,com.epam.digital.data.platform.starter.security.PermitAllSecurityAutoConfiguration
+    spring.autoconfigure.exclude: com.epam.digital.data.platform.starter.security.PlatformSecurityAutoConfiguration,com.epam.digital.data.platform.starter.security.PermitAllSecurityAutoConfiguration,com.epam.digital.data.platform.starter.trembita.integration.base.config.TrembitaIntegrationAutoConfiguration
 
     {{- if eq .Values.deployProfile "dev" }}
     management.endpoints.web.exposure.include: '*'
