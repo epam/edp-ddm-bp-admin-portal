@@ -7,7 +7,7 @@ data:
     camunda.bpm.history-level: {{ .Values.camunda.bpm.historyLevel }}
     camunda.bpm.database-history-level: {{ .Values.camunda.bpm.databaseHistoryLevel }}
     spring.datasource.driver-class-name: org.postgresql.Driver
-    spring.datasource.url: jdbc:postgresql://citus-master:5432/camunda
+    spring.datasource.url: jdbc:postgresql://citus-master:5432/camunda?ApplicationName={{ .Chart.Name }}
     keycloakClientId: {{ .Values.keycloak.client }}
     keycloakAdminUrl: {{ template "keycloak.url" . }}/auth/realms/{{ template "keycloak.adminRealm" . }}
     keycloakcCamundaPluginAdminUrl: {{ template "keycloak.url" . }}/auth/admin/realms/{{ template "keycloak.adminRealm" . }}
