@@ -21,7 +21,7 @@
     </camunda.bpm.identity.keycloak.plugin.verison>
 
     <ddm-starter-logger.version>1.6.0.9</ddm-starter-logger.version>
-    <ddm-starter-juel-function.version>1.9.4.6</ddm-starter-juel-function.version>
+    <ddm-starter-juel-function.version>1.9.4.7</ddm-starter-juel-function.version>
     <nimbusds.oauth2-oidc-sdk.version>9.18</nimbusds.oauth2-oidc-sdk.version>
     <log4j.version>2.17.0</log4j.version>
     <bpms.version>1.9.4.9</bpms.version>
