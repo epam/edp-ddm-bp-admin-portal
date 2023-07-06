@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 EPAM Systems.
+ * Copyright 2023 EPAM Systems.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 
 package com.epam.digital.data.platform.bpms.admin.config.security;
 
+import com.epam.digital.data.platform.bpms.admin.config.RedirectionFilter;
 import com.epam.digital.data.platform.bpms.security.config.BpmSecurityConfig;
 import java.util.Collections;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -69,6 +71,7 @@ public class WebAppSecurityConfig extends WebSecurityConfigurerAdapter {
         .logoutRequestMatcher(new AntPathRequestMatcher("/camunda/**/logout"))
         .logoutSuccessHandler(keycloakLogoutHandler)
     ;
+    http.addFilterAfter(new RedirectionFilter(), BasicAuthenticationFilter.class);
   }
 
   private void allowAccessToActuatorEndpoints(HttpSecurity http) throws Exception {
