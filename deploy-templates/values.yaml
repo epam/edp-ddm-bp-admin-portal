@@ -61,6 +61,6 @@ db:
     name: operational-pguser-postgres
 
 edpComponent:
-  description: "Користувацький інтерфейс для перегляду стану виконання та управління бізнес-процесами реєстру"
-  displayName: "Веб-інтерфейс управління виконанням бізнес-процесів (Business Proc Adm)"
+  description: "Користувацький інтерфейс для перегляду стану виконання та управління бізнес-процесами реєстру."
+  displayName: "Веб-інтерфейс управління виконанням бізнес-процесів (Business Process Administration)"
   operationalZone: "registry-administration-zone"

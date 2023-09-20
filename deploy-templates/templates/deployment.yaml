@@ -32,6 +32,9 @@ spec:
           httpGet:
             path: {{ .Values.livenessPath }}
             port: {{ .Values.port }}
+            httpHeaders:
+              - name: X-B3-Sampled
+                value: "0"
           failureThreshold: 10
           initialDelaySeconds: 100
           periodSeconds: 10
@@ -41,6 +44,9 @@ spec:
           httpGet:
             path: {{ .Values.readinessPath }}
             port: {{ .Values.port }}
+            httpHeaders:
+              - name: X-B3-Sampled
+                value: "0"
           failureThreshold: 10
           initialDelaySeconds: 100
           periodSeconds: 10
