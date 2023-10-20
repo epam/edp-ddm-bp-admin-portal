@@ -27,8 +27,19 @@ data:
     data-platform.kafka.ssl.keystore-certificate: {{ .Values.kafka.sslUserCertificate }}
     data-platform.kafka.ssl.keystore-key: {{ .Values.kafka.sslUserKey }}
     data-platform.kafka.ssl.truststore-certificate: {{ .Values.kafka.sslClusterCertificate }}
+    data-platform.kafka.topic-properties.creation.num-partitions: {{ .Values.kafka.numPartitions }}
+    data-platform.kafka.topic-properties.creation.replication-factor: {{ .Values.global.kafkaOperator.replicationFactor }}
+    digital-document-service.url: http://digital-document-service:8080
 
     bp-admin-portal:
       monitoring:
         metrics:
           enabled: {{ .Values.global.bpAdminPortal.camunda.bpm.metrics.enabled }}
+          collection-interval-ms: {{ .Values.global.bpAdminPortal.camunda.bpm.metrics.collectionIntervalMs }}
+
+    redis.endpoint : rfs-redis-sentinel.{{ .Release.Namespace }}.svc:26379
+    storage: {{ toYaml .Values.storage | nindent 6 }}
+
+    keycloak.url: {{ template "keycloak.url" . }}/auth
+    keycloak.system-user.realm: {{ template "keycloak.systemUserTargetRealm" . }}
+    keycloak.system-user.client-id: {{ .Values.keycloak.systemUserClient.clientName }}

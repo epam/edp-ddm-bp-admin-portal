@@ -44,11 +44,10 @@ data-platform:
     topic-properties:
       creation:
         enabled: true
-        num-partitions: 1
-        replication-factor: 1
     topics:
       history-process-instance-topic: bpm-history-process
       history-task-topic: bpm-history-task
+      lowcode-file-storage-cleanup-topic: bpm-lowcode-file-storage-cleanup
 
 spring.autoconfigure.exclude: com.epam.digital.data.platform.starter.security.PlatformSecurityAutoConfiguration,com.epam.digital.data.platform.starter.security.PermitAllSecurityAutoConfiguration
 
@@ -143,3 +142,4 @@ logbook:
 bpm:
   metrics:
     enabled: ${bp-admin-portal.monitoring.metrics.enabled}
+    collection-interval-ms: ${bp-admin-portal.monitoring.metrics.collection-interval-ms}

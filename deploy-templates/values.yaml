@@ -1,11 +1,22 @@
 global:
-  disableRequestsLimits: false
+  kafkaOperator:
+    replicationFactor: 3
   bpAdminPortal:
     camunda:
       bpm:
         metrics:
           enabled: true
+          collectionIntervalMs: 60000
           scrapeInterval: 60s
+  container:
+    requestsLimitsEnabled: true
+  registry:
+    bpAdminPortal:
+      container:
+        envVars: {}
+        resources:
+          requests: {}
+          limits: {}
 
 image:
   name: business-process-administration-portal
@@ -20,6 +31,8 @@ appSecretsMountPathBpmsDB: "/app/secrets/bpms-db"
 appSecretsMountPathCamundaAdmin: "/app/secrets/camunda-admin"
 appSecretsMountPathAdminKeycloakClient: "/app/secrets/admin-camunda-cockpit"
 appSecretsMountPathOfficerKeycloakClient: "/app/secrets/officer-camunda-cockpit"
+systemUserKeycloakClientSecretsMountPath: "/app/secrets/system-user-client"
+redisSecretsMountPath: "/app/secrets/redis"
 prometheusScrapePath: "/actuator/prometheus"
 readinessPath: "/actuator/health/readiness"
 livenessPath: "/actuator/health/liveness"
@@ -36,8 +49,10 @@ keycloak:
     name: admin
   officerRealm:
     name: officer-portal
-
-javaOpts: "-Xms512m -Xmx512m"
+  systemUserClient:
+    clientName: camunda-cockpit
+    realm: admin
+    secretName: keycloak-client-camunda-cockpit-admin-secret
 
 deployProfile: prod
 
@@ -50,6 +65,7 @@ kafka:
   sslUserKey: ${KAFKA_USER_KEYSTORE_KEY}
   sslUserCertificate: ${KAFKA_USER_KEYSTORE_CERTIFICATE}
   sslClusterCertificate: ${KAFKA_CLUSTER_TRUSTSTORE}
+  numPartitions: 15
 
 camunda:
   bpm:
@@ -58,7 +74,22 @@ camunda:
 
 db:
   secret:
-    name: operational-pguser-postgres
+    name: citus-roles-secrets
+
+storage:
+  form-data:
+    type: redis
+  message-payload:
+    type: redis
+  backend:
+    redis:
+      password: ${REDIS_PASSWORD}
+      sentinel:
+        master: mymaster
+        nodes: ${redis.endpoint}
+
+redis:
+  secretName: redis-auth
 
 edpComponent:
   description: "Користувацький інтерфейс для перегляду стану виконання та управління бізнес-процесами реєстру."

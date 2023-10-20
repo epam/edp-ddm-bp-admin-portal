@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Chart.Name }}
+  annotations:
+    secret.reloader.stakater.com/reload: "{{ .Values.db.secret.name }}"
   labels:
     app: {{ .Chart.Name }}
 spec:
@@ -19,8 +21,6 @@ spec:
       labels:
         app: {{ .Chart.Name }}
         collect.logs: "json"
-      annotations:
-        sidecar.istio.io/inject: "false"
     spec:
       containers:
       - name: {{ .Chart.Name }}
@@ -52,18 +52,15 @@ spec:
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 5
-        {{- if not .Values.global.disableRequestsLimits }}
+        {{- if .Values.global.container.requestsLimitsEnabled }}
         resources:
-          limits:
-            cpu: 500m
-            memory: 768Mi
-          requests:
-            cpu: 500m
-            memory: 768Mi
+          {{- toYaml .Values.global.registry.bpAdminPortal.container.resources | nindent 10 }}
         {{- end }}
         env:
-          - name: JAVA_OPTS
-            value: {{ .Values.javaOpts }}
+          {{- range $name, $value := .Values.global.registry.bpAdminPortal.container.envVars }}
+          - name: {{ $name }}
+            value: {{ $value | quote }}
+          {{- end }}
           - name: KAFKA_USER_KEYSTORE_CERTIFICATE
             valueFrom:
               secretKeyRef:
@@ -79,6 +76,11 @@ spec:
               secretKeyRef:
                 name: {{ .Values.kafka.clusterName }}-cluster-ca-cert
                 key: ca.crt
+          - name: REDIS_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.redis.secretName }}
+                key: password
         volumeMounts:
           - name: {{ .Chart.Name }}
             mountPath: {{ .Values.appConfigMountPath }}
@@ -88,6 +90,8 @@ spec:
             mountPath: {{ .Values.appSecretsMountPathAdminKeycloakClient }}
           - name: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.officerRealm.name }}-secret
             mountPath: {{ .Values.appSecretsMountPathOfficerKeycloakClient }}
+          - name: {{ .Chart.Name }}-redis-credentials
+            mountPath: {{ .Values.redisSecretsMountPath }}
       serviceAccountName: {{ .Chart.Name }}
       {{- if .Values.nodeSelector }}
       nodeSelector: {{ toYaml .Values.nodeSelector | nindent 8 }}
@@ -103,9 +107,9 @@ spec:
           secret:
             secretName: {{ .Values.db.secret.name }}
             items:
-              - key: user
+              - key: bpAdminPortalServiceName
                 path: spring.datasource.username
-              - key: password
+              - key: bpAdminPortalServicePass
                 path: spring.datasource.password
         - name: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.adminRealm.name }}-secret
           secret:
@@ -113,9 +117,17 @@ spec:
             items:
               - key: clientSecret
                 path: admin-realm.client-secret
+              - key: clientSecret
+                path: keycloak.system-user.client-secret
         - name: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.officerRealm.name }}-secret
           secret:
             secretName: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.officerRealm.name }}-secret
             items:
               - key: clientSecret
-                path: officer-realm.client-secret             
+                path: officer-realm.client-secret
+        - name: {{ .Chart.Name }}-redis-credentials
+          secret:
+            secretName: {{ .Values.redis.secretName }}
+            items:
+              - key: password
+                path: redis.password

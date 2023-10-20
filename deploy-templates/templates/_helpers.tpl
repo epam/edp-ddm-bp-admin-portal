@@ -28,6 +28,10 @@
 {{- printf "%s-%s" .Values.namespace .Values.keycloak.adminRealm.name }}
 {{- end -}}
 
+{{- define "keycloak.systemUserTargetRealm" -}}
+{{- printf "%s-%s" .Release.Namespace .Values.keycloak.systemUserClient.realm }}
+{{- end -}}
+
 {{- define "camunda-cockpit.url" -}}
 {{- printf "%s%s-%s-%s.%s" "https://" "business-proc-admin" .Values.cdPipelineName .Values.cdPipelineStageName .Values.dnsWildcard }}
 {{- end }}

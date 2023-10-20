@@ -21,11 +21,12 @@
     </camunda.bpm.identity.keycloak.plugin.verison>
 
     <ddm-starter-logger.version>1.6.0.9</ddm-starter-logger.version>
-    <ddm-starter-juel-function.version>1.9.4.7</ddm-starter-juel-function.version>
+    <ddm-starter-juel-function.version>1.9.8.1</ddm-starter-juel-function.version>
     <nimbusds.oauth2-oidc-sdk.version>9.18</nimbusds.oauth2-oidc-sdk.version>
     <log4j.version>2.17.0</log4j.version>
-    <bpms.version>1.9.4.9</bpms.version>
+    <bpms.version>1.9.8-1.9.8-HOTFIX-SNAPSHOT</bpms.version>
     <keycloak-core.version>20.0.3</keycloak-core.version>
+    <camunda-engine-plugin-connect.version>7.20.0</camunda-engine-plugin-connect.version>
     <sonar.coverage.exclusions>
       **/*.java
     </sonar.coverage.exclusions>
@@ -178,6 +179,12 @@
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
       <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.camunda.bpm</groupId>
+      <artifactId>camunda-engine-plugin-connect</artifactId>
+      <version>${camunda-engine-plugin-connect.version}</version>
     </dependency>
   </dependencies>
 

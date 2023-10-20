@@ -23,11 +23,13 @@ import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration;
 import org.springframework.boot.jdbc.DatabaseDriver;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.support.DatabaseStartupValidator;
 import org.springframework.web.context.request.RequestContextListener;
 
 @Configuration
+@ComponentScan(basePackages = "com.epam.digital.data.platform.bpms.storage")
 public class GeneralConfig {
 
   @Bean
