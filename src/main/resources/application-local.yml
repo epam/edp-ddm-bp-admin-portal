@@ -31,3 +31,23 @@ bp-admin-portal:
   monitoring:
     metrics:
       enabled: true
+
+storage:
+  form-data:
+    type: redis
+  message-payload:
+    type: redis
+  backend:
+    redis:
+      sentinel:
+        master: mymaster
+        nodes: 127.0.0.1:26379
+    ceph:
+      bucket: bucketName
+
+keycloak:
+  url: http://localhost:8088
+  system-user:
+    realm: system-user-realm
+    client-id: system-user-client-id
+    client-secret: system-user-client-secret
