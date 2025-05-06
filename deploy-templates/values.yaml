@@ -32,7 +32,6 @@ appSecretsMountPathCamundaAdmin: "/app/secrets/camunda-admin"
 appSecretsMountPathAdminKeycloakClient: "/app/secrets/admin-camunda-cockpit"
 appSecretsMountPathOfficerKeycloakClient: "/app/secrets/officer-camunda-cockpit"
 systemUserKeycloakClientSecretsMountPath: "/app/secrets/system-user-client"
-redisSecretsMountPath: "/app/secrets/redis"
 prometheusScrapePath: "/actuator/prometheus"
 readinessPath: "/actuator/health/readiness"
 livenessPath: "/actuator/health/liveness"
@@ -83,13 +82,14 @@ storage:
     type: redis
   backend:
     redis:
+      username: ${REDIS_USERNAME}
       password: ${REDIS_PASSWORD}
       sentinel:
         master: mymaster
         nodes: ${redis.endpoint}
 
 redis:
-  secretName: redis-auth
+  secretName: redis-bp-admin-portal-user-secret
 
 edpComponent:
   description: "Користувацький інтерфейс для перегляду стану виконання та управління бізнес-процесами реєстру."

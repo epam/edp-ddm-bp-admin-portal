@@ -3,7 +3,8 @@ kind: Deployment
 metadata:
   name: {{ .Chart.Name }}
   annotations:
-    secret.reloader.stakater.com/reload: "{{ .Values.db.secret.name }}"
+    secret.reloader.stakater.com/reload: "{{ .Values.db.secret.name }},{{ .Values.redis.secretName }}"
+    configmap.reloader.stakater.com/reload: "{{ .Chart.Name }}"
   labels:
     app: {{ .Chart.Name }}
 spec:
@@ -76,6 +77,11 @@ spec:
               secretKeyRef:
                 name: {{ .Values.kafka.clusterName }}-cluster-ca-cert
                 key: ca.crt
+          - name: REDIS_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.redis.secretName }}
+                key: username
           - name: REDIS_PASSWORD
             valueFrom:
               secretKeyRef:
@@ -88,10 +94,6 @@ spec:
             mountPath: {{ .Values.appSecretsMountPathBpmsDB }}
           - name: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.adminRealm.name }}-secret
             mountPath: {{ .Values.appSecretsMountPathAdminKeycloakClient }}
-          - name: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.officerRealm.name }}-secret
-            mountPath: {{ .Values.appSecretsMountPathOfficerKeycloakClient }}
-          - name: {{ .Chart.Name }}-redis-credentials
-            mountPath: {{ .Values.redisSecretsMountPath }}
       serviceAccountName: {{ .Chart.Name }}
       {{- if .Values.nodeSelector }}
       nodeSelector: {{ toYaml .Values.nodeSelector | nindent 8 }}
@@ -119,15 +121,3 @@ spec:
                 path: admin-realm.client-secret
               - key: clientSecret
                 path: keycloak.system-user.client-secret
-        - name: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.officerRealm.name }}-secret
-          secret:
-            secretName: keycloak-client-{{ .Values.keycloak.client }}-{{ .Values.keycloak.officerRealm.name }}-secret
-            items:
-              - key: clientSecret
-                path: officer-realm.client-secret
-        - name: {{ .Chart.Name }}-redis-credentials
-          secret:
-            secretName: {{ .Values.redis.secretName }}
-            items:
-              - key: password
-                path: redis.password
